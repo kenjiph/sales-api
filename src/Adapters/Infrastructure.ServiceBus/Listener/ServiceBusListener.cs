@@ -23,6 +23,12 @@ namespace Infrastructure.ServiceBus.Listener
                 TransportType = ServiceBusTransportType.AmqpWebSockets
             };
             _serviceBusClient = new ServiceBusClient(_serviceBusSettings.ConnectionString, clientOptions);
+            var processorOptions = new ServiceBusProcessorOptions
+            {
+                AutoCompleteMessages = false,
+                MaxConcurrentCalls = 1,
+                PrefetchCount = 0
+            };
             _processor = _serviceBusClient.CreateProcessor(_serviceBusSettings.CreateSaleRequestQueue, new ServiceBusProcessorOptions());
             _saleRepository = saleRepository;
             _messageProcessed = new TaskCompletionSource<bool>();

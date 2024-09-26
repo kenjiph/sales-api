@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\CoreBusi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\Adapters\Api\Api.csproj", "{0074D802-E515-4950-95B0-5E19659519A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.ServiceBus", "src\Adapters\Infrastructure.ServiceBus\Infrastructure.ServiceBus.csproj", "{6C42B993-8639-4B8B-983F-295F580D6D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.ServiceBus", "src\Adapters\Infrastructure.ServiceBus\Infrastructure.ServiceBus.csproj", "{6C42B993-8639-4B8B-983F-295F580D6D5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

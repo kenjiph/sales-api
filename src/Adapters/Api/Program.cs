@@ -25,14 +25,12 @@ builder.Services.AddApplicationLayer();
 
 var app = builder.Build();
 
-
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.Urls.Add("http://0.0.0.0:5003");
 
 app.Run();
