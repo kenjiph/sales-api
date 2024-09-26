@@ -11,9 +11,9 @@ namespace Domain.Modules.Sales.Aggregates
 
         public Sale() { }
 
-        public Sale(DateTime saleDate, List<SaleItem> items)
+        public Sale(DateTime saleDate, List<SaleItem> items, Guid? id = null)
         {
-            Id = Guid.NewGuid();
+            Id = id ?? Guid.NewGuid();
             SaleDate = saleDate;
             Items = items ?? new List<SaleItem>();
             TotalAmount = Items.Sum(item => item.Amount);

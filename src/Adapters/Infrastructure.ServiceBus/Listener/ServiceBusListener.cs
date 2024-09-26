@@ -59,13 +59,26 @@ namespace Infrastructure.ServiceBus.Listener
             
             if (saleRequest != null)
             {
+                var existingSale = await _saleRepository.GetSaleByIdAsync(saleRequest.Id);
+                if (existingSale != null)
+                {
+                    await args.CompleteMessageAsync(args.Message);
+                    _messageProcessed.SetResult(true);
+                    return; 
+                }
+
                 var saleItems = saleRequest.Items.Select(item => new SaleItem(
                 productName: item.ProductName,
                 quantity: item.Quantity,
                 unitPrice: item.UnitPrice)
                 ).ToList();
 
-                var sale = new Sale(saleRequest.SaleDate, saleItems);
+                var sale = new Sale
+                (
+                    saleRequest.SaleDate, 
+                    saleItems,
+                    saleRequest.Id != Guid.Empty ? saleRequest.Id : Guid.NewGuid()
+                );
 
                 await _saleRepository.AddSaleAsync(sale);
                 await args.CompleteMessageAsync(args.Message);
